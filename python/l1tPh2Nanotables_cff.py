@@ -549,6 +549,25 @@ hpsTauTable = cms.EDProducer(
     )
 )
 
+## DT table - this should be moved to its own python file
+
+dtPhiTable = cms.EDProducer(
+    "SimpleTriggerL1Phase2MuDTPhDigiTableProducer",
+     src= cms.InputTag("dtTriggerPhase2PrimitiveDigis"),
+     cut = cms.string(""),
+     name = cms.string("L1Phase2MuDTPhDigi"),
+     doc = cms.string ("DT Phase2 Digi, Phi"),
+     variables = cms.PSet(
+           whNum  = Var ("whNum",int,doc="Wheel"),
+           scNum  = Var ("scNum",int,doc="Sector"),
+           stNum  = Var ("stNum",int,doc="Station")
+           #charge  = Var("phCharge", int, doc="charge id"),
+     )
+)
+
+
+
+
 ## L1 Objects
 p2L1TablesTask = cms.Task(
     ## Muons
@@ -590,5 +609,8 @@ p2L1TablesTask = cms.Task(
     gttEtSumTable,
     gttHtSumTable,
     gttExtHtSumTable,
+    # DT tests
+    dtPhiTable
+
 )
 
